@@ -13,6 +13,7 @@
 		08003A951ECE1CB7000EF295 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08003A931ECE1CB7000EF295 /* LaunchScreen.storyboard */; };
 		08003A9D1ECE21E3000EF295 /* OilChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08003A9C1ECE21E3000EF295 /* OilChangeViewController.swift */; };
 		08003AA11ECE27EE000EF295 /* ServicesOfferedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08003AA01ECE27EE000EF295 /* ServicesOfferedViewController.swift */; };
+		08003AA31ECE2FC0000EF295 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08003AA21ECE2FC0000EF295 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		08003A961ECE1CB7000EF295 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08003A9C1ECE21E3000EF295 /* OilChangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OilChangeViewController.swift; sourceTree = "<group>"; };
 		08003AA01ECE27EE000EF295 /* ServicesOfferedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesOfferedViewController.swift; sourceTree = "<group>"; };
+		08003AA21ECE2FC0000EF295 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				08003A8A1ECE1CB7000EF295 /* AppDelegate.swift */,
 				08003A8E1ECE1CB7000EF295 /* Main.storyboard */,
+				08003AA21ECE2FC0000EF295 /* LoginViewController.swift */,
 				08003AA01ECE27EE000EF295 /* ServicesOfferedViewController.swift */,
 				08003A9C1ECE21E3000EF295 /* OilChangeViewController.swift */,
 				08003A911ECE1CB7000EF295 /* Assets.xcassets */,
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08003AA31ECE2FC0000EF295 /* LoginViewController.swift in Sources */,
 				08003AA11ECE27EE000EF295 /* ServicesOfferedViewController.swift in Sources */,
 				08003A8B1ECE1CB7000EF295 /* AppDelegate.swift in Sources */,
 				08003A9D1ECE21E3000EF295 /* OilChangeViewController.swift in Sources */,
