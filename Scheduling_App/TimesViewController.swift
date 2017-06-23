@@ -46,8 +46,7 @@ class TimesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
-        //cell.textLabel!.text = "\(myArray[indexPath.row])"
-        cell.textLabel!.text = "\(time[indexPath.row])"
+        cell.textLabel!.text = "\(myArray[indexPath.row])"
         return cell
     }
     
@@ -58,10 +57,6 @@ class TimesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Morning"
     }
-    
-    
-    NSLog(time.timeRepresentations)
-    
 }
 
 

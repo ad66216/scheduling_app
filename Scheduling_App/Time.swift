@@ -27,17 +27,17 @@ struct Time {
         self.interval = intervalMinutes * 60
     }
     
-    var timeRepresentations: [String] {
-        let dateComponentFormatter = DateComponentsFormatter()
-        dateComponentFormatter.unitsStyle = .positional
-        dateComponentFormatter.allowedUnits = [.minute, .hour]
-        
-        let dateComponent = NSDateComponents()
-        return timeIntervals.map { timeInterval in
-            dateComponent.second = Int(timeInterval)
-            return dateComponentFormatter.string(from: dateComponent as DateComponents)!
-        }
-    }
+//    var timeRepresentations: [String] {
+//        let dateComponentFormatter = DateComponentsFormatter()
+//        dateComponentFormatter.unitsStyle = .positional
+//        dateComponentFormatter.allowedUnits = [.minute, .hour]
+//        
+//        let dateComponent = NSDateComponents()
+//        return timeIntervals.map { timeInterval in
+//            dateComponent.second = Int(timeInterval)
+//            return dateComponentFormatter.string(from: dateComponent as DateComponents)!
+//        }
+//    }
     
 //    var timeIntervals: [TimeInterval]{
 //        //return Array(start.stride(from:)
