@@ -1,4 +1,4 @@
-//
+    //
 //  AppDelegate.swift
 //  Scheduling_App
 //
@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        PFUser.registerSubclass();
+        
+        Parse.initialize(with: ParseClientConfiguration.init(block: { (configuration: ParseMutableClientConfiguration) in
+            configuration.applicationId = "southern-tire-service-app-id";
+            configuration.server = "https://southern-tire-service.herokuapp.com/parse/";
+        }))
+        
         return true
     }
 

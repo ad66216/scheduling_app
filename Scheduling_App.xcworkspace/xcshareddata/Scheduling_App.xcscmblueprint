@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "87B28783601526FE3FA3E2A8DE360ACC659AAB3E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "87B28783601526FE3FA3E2A8DE360ACC659AAB3E" : 9223372036854775807,
+    "EC1E3E24F033AF964B4D0DE1E6F4BBF51931B5D8" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "95F1FE84-933C-4337-8882-55328397B3EF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "87B28783601526FE3FA3E2A8DE360ACC659AAB3E" : "Scheduling_App\/",
+    "EC1E3E24F033AF964B4D0DE1E6F4BBF51931B5D8" : "AutoServiceApp\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Scheduling_App",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Scheduling_App.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ad66216\/scheduling_app.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "87B28783601526FE3FA3E2A8DE360ACC659AAB3E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ad66216\/auto_service_app.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EC1E3E24F033AF964B4D0DE1E6F4BBF51931B5D8"
+    }
+  ]
+}
