@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Parse
 
 class ServicesOfferedViewController: UIViewController {
 
+    var appointment: Appointment!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +24,32 @@ class ServicesOfferedViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func unwindFromOilChange(segue: UIStoryboardSegue) {
-        
+//    @IBAction func unwindFromOilChange(segue: UIStoryboardSegue) {
+//        
+//    }
+    
+    @IBAction func tireRotationClick(_ sender: Any) {
+        self.appointment = Appointment()
+        //let user = PFUser()
+        self.appointment.user = PFUser.current()!
+        self.appointment.serviceType = "tireRotation"
+        self.performSegue(withIdentifier: "tireRotationSegue", sender:self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! DropOffWaitingViewController
+        destinationVC.appointment = self.appointment
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

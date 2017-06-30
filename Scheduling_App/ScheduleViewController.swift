@@ -8,24 +8,17 @@
 
 import UIKit
 import CVCalendar
+import Parse
 
 class ScheduleViewController: UIViewController, CVCalendarViewDelegate, CVCalendarMenuViewDelegate  {
 
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
     
+    var appointment: Appointment!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let datePickerView = RSDFDatePickerView()
-//        datePickerView.frame = self.view.bounds
-//        datePickerView.delegate = self
-//        self.view.addSubview(datePickerView)
-
-//        RSDFDatePickerView *datePickerView = [[RSDFDatePickerView alloc] initWithFrame:self.view.bounds];
-//        datePickerView.delegate = self;
-//        datePickerView.dataSource = self;
-//        [self.view addSubview:datePickerView];
         
         menuView.delegate = self;
         calendarView.delegate = self;
@@ -42,12 +35,6 @@ class ScheduleViewController: UIViewController, CVCalendarViewDelegate, CVCalend
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    func didSelectDate: RSDFDatePickerView (date: NSDate) {
-//        let theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-//        let loginViewController = theStoryBoard.instantiateViewController(withIdentifier: "TimesViewController")
-//        UIApplication.shared.keyWindow?.rootViewController = loginViewController
-//    }
     
     func presentationMode() -> CalendarMode {
         return .monthView
@@ -86,7 +73,35 @@ class ScheduleViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     }
     
     func didSelectDayView(_ dayView: CVCalendarDayView, animationDidFinish: Bool) {
+        appointment.date = dayView.date.day
+        appointment.month = dayView.date.month
+        appointment.year = dayView.date.year
+        appointment.dateTime = dayView.date.convertedDate()!
+        
+        switch dayView.date.weekDay()! {
+        case Weekday.sunday:
+            appointment["dayOfWeek"] = "Sunday"
+        case Weekday.monday:
+            appointment["dayOfWeek"] = "Monday"
+        case Weekday.tuesday:
+            appointment["dayOfWeek"] = "Tuesday"
+        case Weekday.wednesday:
+            appointment["dayOfWeek"] = "Wednesday"
+        case Weekday.thursday:
+            appointment["dayOfWeek"] = "Thursday"
+        case Weekday.friday:
+            appointment["dayOfWeek"] = "Friday"
+        case Weekday.saturday:
+            appointment["dayOfWeek"] = "Saturday"
+            break
+        }
         self.performSegue(withIdentifier: "timesSegue", sender:self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let destinationVC = segue.destination as! TimesViewController
+        destinationVC.appointment = appointment
     }
     
 //    func shouldSelectRange() -> Bool {

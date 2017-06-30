@@ -18,6 +18,11 @@
 		089A4B311EFD35F700C6B713 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A4B301EFD35F700C6B713 /* ScheduleViewController.swift */; };
 		089A4B391EFD46E200C6B713 /* TimesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A4B381EFD46E200C6B713 /* TimesViewController.swift */; };
 		089A4B3B1EFD8D7800C6B713 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A4B3A1EFD8D7800C6B713 /* Time.swift */; };
+		08C892581F054DCE009821B7 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C892571F054DCE009821B7 /* Appointment.swift */; };
+		08C8925A1F05609E009821B7 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C892591F05609E009821B7 /* Schedule.swift */; };
+		08C8925C1F068024009821B7 /* DropOffWaitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C8925B1F068024009821B7 /* DropOffWaitingViewController.swift */; };
+		08C8925E1F06BE19009821B7 /* VehicleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C8925D1F06BE19009821B7 /* VehicleListViewController.swift */; };
+		08C892601F06C79A009821B7 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C8925F1F06C79A009821B7 /* Vehicle.swift */; };
 		08F4B7CD1EFC4E7C00D1DEBB /* VehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F4B7CC1EFC4E7C00D1DEBB /* VehicleViewController.swift */; };
 		D4BA3845E396A33516FEA358 /* Pods_Scheduling_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748F7A4E893023458ECE5CD2 /* Pods_Scheduling_App.framework */; };
 /* End PBXBuildFile section */
@@ -37,6 +42,11 @@
 		089A4B351EFD3CB100C6B713 /* Scheduling_App-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Scheduling_App-Bridging-Header.h"; sourceTree = "<group>"; };
 		089A4B381EFD46E200C6B713 /* TimesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimesViewController.swift; sourceTree = "<group>"; };
 		089A4B3A1EFD8D7800C6B713 /* Time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		08C892571F054DCE009821B7 /* Appointment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
+		08C892591F05609E009821B7 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		08C8925B1F068024009821B7 /* DropOffWaitingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropOffWaitingViewController.swift; sourceTree = "<group>"; };
+		08C8925D1F06BE19009821B7 /* VehicleListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleListViewController.swift; sourceTree = "<group>"; };
+		08C8925F1F06C79A009821B7 /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		08F4B7CC1EFC4E7C00D1DEBB /* VehicleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleViewController.swift; sourceTree = "<group>"; };
 		273677024AA3731548E8F2CC /* Pods-Scheduling_App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scheduling_App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scheduling_App/Pods-Scheduling_App.release.xcconfig"; sourceTree = "<group>"; };
 		496AB26B4514B27C16BA5DFD /* Pods-Scheduling_App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scheduling_App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scheduling_App/Pods-Scheduling_App.debug.xcconfig"; sourceTree = "<group>"; };
@@ -86,12 +96,17 @@
 			isa = PBXGroup;
 			children = (
 				08003A8A1ECE1CB7000EF295 /* AppDelegate.swift */,
+				08C892571F054DCE009821B7 /* Appointment.swift */,
+				08C892591F05609E009821B7 /* Schedule.swift */,
+				08C8925F1F06C79A009821B7 /* Vehicle.swift */,
 				08003A8E1ECE1CB7000EF295 /* Main.storyboard */,
+				08F4B7CC1EFC4E7C00D1DEBB /* VehicleViewController.swift */,
+				08C8925D1F06BE19009821B7 /* VehicleListViewController.swift */,
 				083EF96F1EFC448600C187B4 /* SettingsViewController.swift */,
 				083EF9691EFC0F3B00C187B4 /* UserLoginViewController.swift */,
 				083EF96B1EFC1CD600C187B4 /* CreateAccountViewController.swift */,
 				08003AA01ECE27EE000EF295 /* ServicesOfferedViewController.swift */,
-				08F4B7CC1EFC4E7C00D1DEBB /* VehicleViewController.swift */,
+				08C8925B1F068024009821B7 /* DropOffWaitingViewController.swift */,
 				089A4B301EFD35F700C6B713 /* ScheduleViewController.swift */,
 				089A4B381EFD46E200C6B713 /* TimesViewController.swift */,
 				08003A911ECE1CB7000EF295 /* Assets.xcassets */,
@@ -237,13 +252,18 @@
 			files = (
 				083EF96C1EFC1CD600C187B4 /* CreateAccountViewController.swift in Sources */,
 				089A4B391EFD46E200C6B713 /* TimesViewController.swift in Sources */,
+				08C8925A1F05609E009821B7 /* Schedule.swift in Sources */,
+				08C8925C1F068024009821B7 /* DropOffWaitingViewController.swift in Sources */,
+				08C892601F06C79A009821B7 /* Vehicle.swift in Sources */,
 				08003AA11ECE27EE000EF295 /* ServicesOfferedViewController.swift in Sources */,
 				083EF9701EFC448600C187B4 /* SettingsViewController.swift in Sources */,
 				089A4B311EFD35F700C6B713 /* ScheduleViewController.swift in Sources */,
 				08003A8B1ECE1CB7000EF295 /* AppDelegate.swift in Sources */,
 				089A4B3B1EFD8D7800C6B713 /* Time.swift in Sources */,
 				083EF96A1EFC0F3B00C187B4 /* UserLoginViewController.swift in Sources */,
+				08C8925E1F06BE19009821B7 /* VehicleListViewController.swift in Sources */,
 				08F4B7CD1EFC4E7C00D1DEBB /* VehicleViewController.swift in Sources */,
+				08C892581F054DCE009821B7 /* Appointment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,14 +18,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        PFUser.registerSubclass();
+        initParse()
+        
+        return true
+    }
+    
+    func initParse() {
+        
+        // register all parse subclasses before parse initialize
+        PFUser.registerSubclass()
+        Appointment.registerSubclass()
+        Schedule.registerSubclass()
         
         Parse.initialize(with: ParseClientConfiguration.init(block: { (configuration: ParseMutableClientConfiguration) in
             configuration.applicationId = "southern-tire-service-app-id";
             configuration.server = "https://southern-tire-service.herokuapp.com/parse/";
         }))
-        
-        return true
+
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
