@@ -8,19 +8,16 @@ import UIKit
 import Parse
 
 class TimesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    //private let myArray: NSArray = ["First","Second","Third"]
-    //let time = Time(startHour: 8, intervalMinutes: 30, endHour: 23)
+    
     private var myTableView: UITableView!
     //var appointment: PFObject!
     var appointment: Appointment!
     var unavailableTimeSlots: NSMutableArray!
     var schedule = Schedule()
-    //var timeSlots: NSArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
         let displayWidth: CGFloat = self.view.frame.width
         let displayHeight: CGFloat = self.view.frame.height
@@ -36,7 +33,7 @@ class TimesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         //Query the current Schedule to get all the times that
         let query = PFQuery(className: "Schedule")
-        //query.whereKey("dayOfWeek", equalTo: appointment.dayOfWeek)
+        query.whereKey("dayOfWeek", equalTo: appointment.dayOfWeek)
         query.getFirstObjectInBackground {
             (object: PFObject?, error: Error?) -> Void in
             if error != nil || object == nil {
@@ -73,11 +70,16 @@ class TimesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     //var timesArray = NSMutableArray()
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("Num: \(indexPath.row)")
-//        print("Value: \(myArray[indexPath.row])")
-//    }
+    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        print("Num: \(indexPath.row)")
+    //        print("Value: \(myArray[indexPath.row])")
+    //    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //        UIApplication.shared.keyWindow?.rootViewController = vehicleListViewController
+        //        self.present(vehicleListViewController, animated: true, completion: nil)
+        
+        
         
         let time = Int(self.schedule.timeSlots[indexPath.row] as! String)
         self.appointment.time = time!
@@ -86,25 +88,16 @@ class TimesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let dateTime = self.appointment.dateTime.addingTimeInterval(timeSlot! * 60)
         self.appointment.dateTime = dateTime
         
-        appointment.saveInBackground(block: { (succeeded: Bool?, error: Error?) -> Void in
-            if error != nil {
-                print("The getFirstObject request failed.")
-            } else {
-                let alert = UIAlertController(title: "Success", message: "You have successfully created an appointment", preferredStyle: .alert)
-                self.present(alert, animated: true, completion: nil)
-                
-                // number of seconds in delay (in this case 5 seconds)
-                let when = DispatchTime.now() + 3
-                DispatchQueue.main.asyncAfter(deadline: when){
-                    // code with delay
-                    alert.dismiss(animated: true, completion: nil)
-                }
-//                let alert = UIAlertController(title: "Success!", message: "You have successfully created an appointment", preferredStyle: UIAlertControllerStyle.Alert)
-//                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
-//                self.presentViewController(alert, animated: true, completion: nil)
-            }
-
-        })
+        let selectVehicleViewController = SelectVehicleViewController()
+        selectVehicleViewController.appointment = self.appointment
+        
+        let theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let selectVehicleListViewController = theStoryBoard.instantiateViewController(withIdentifier: "selectVehicleListViewController") as! SelectVehicleViewController
+        
+        selectVehicleListViewController.appointment = self.appointment
+        
+        self.navigationController?.pushViewController(selectVehicleListViewController, animated: true)
+        
         print("Num: \(indexPath.row)")
         //print("Value: \(timesArray[indexPath.row])")
     }
@@ -128,10 +121,11 @@ class TimesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "hh:mm"
         let time = dateFormatterGet.string(from: dateTime)
-    
+        
         if unavailableTimeSlots.contains(Int(timeSlot!)) {
             cell.textLabel!.text = "\(time)"
-            cell.textLabel?.textColor = UIColor.blue
+            cell.textLabel?.textColor = UIColor.lightGray
+            cell.isUserInteractionEnabled = false
         }
         else {
             cell.textLabel!.text = "\(time)"
@@ -139,9 +133,9 @@ class TimesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 2;
-//    }
+    //    func numberOfSections(in tableView: UITableView) -> Int {
+    //        return 2;
+    //    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Morning"

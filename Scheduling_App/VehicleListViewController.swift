@@ -1,4 +1,4 @@
-    //
+//
 //  VehicleListViewController.swift
 //  Scheduling_App
 //
@@ -15,17 +15,18 @@ class VehicleListViewController: UIViewController, UITableViewDelegate, UITableV
     
     var vehicle: Vehicle!
     var vehicleList: NSMutableArray!
+    //var appointment: Appointment!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
-//        let displayWidth: CGFloat = self.view.frame.width
-//        let displayHeight: CGFloat = self.view.frame.height
+        //        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
+        //        let displayWidth: CGFloat = self.view.frame.width
+        //        let displayHeight: CGFloat = self.view.frame.height
         
         vehicleList = NSMutableArray()
         
-//        vehicleListTableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
+        //        vehicleListTableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
         vehicleListTableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
         vehicleListTableView.dataSource = self
         vehicleListTableView.delegate = self
@@ -62,15 +63,34 @@ class VehicleListViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
-    
+        
         if (self.vehicleList.count > indexPath.row) {
-            let vehicle = self.vehicleList.object(at: indexPath.row) as? Vehicle
+            let vehicle = (self.vehicleList.object(at: indexPath.row) as? Vehicle)!
             
-            let text = (vehicle?.make)! + " " + (vehicle?.model)!
+            //            let text = "\(String(describing: vehicle?.year as Optional))" + " " + (vehicle?.make)! + " " + (vehicle?.model)!
+            let text = String(vehicle.year) + " " + vehicle.make! + " " + vehicle.model! + " - " + vehicle.color!
             cell.textLabel!.text = text
         }
-        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let row = indexPath.row
+        print("Row: \(row)")
+        
+        let vehicle = (self.vehicleList.object(at: indexPath.row) as? Vehicle)!
+        didSelectVehicle(vehicle)
+    }
+    
+    func didSelectVehicle(_ vehicle: Vehicle) {
+        
+        // show vehicle details
+        let theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let vehicleViewController = theStoryBoard.instantiateViewController(withIdentifier: "vehicleViewController")
+        self.navigationController?.pushViewController(vehicleViewController, animated: true)
     }
 }
 

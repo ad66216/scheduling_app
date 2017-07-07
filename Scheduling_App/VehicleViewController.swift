@@ -17,6 +17,7 @@ class VehicleViewController: UIViewController {
     @IBOutlet weak var colorTextField: UITextField!
     @IBOutlet weak var vinTextField: UITextField!
     
+    var vehicle: Vehicle!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,23 +28,37 @@ class VehicleViewController: UIViewController {
         colorTextField.contentVerticalAlignment = UIControlContentVerticalAlignment.bottom
         vinTextField.contentVerticalAlignment = UIControlContentVerticalAlignment.bottom
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if vehicle != nil {
+            yearTextField.text = String(vehicle.year)
+            makeTextField.text = vehicle.make
+            modelTextField.text = vehicle.model
+            colorTextField.text = vehicle.color
+            vinTextField.text = vehicle.vin
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     @IBAction func addVehicleClick(_ sender: Any) {
+        
         self.saveVehicle()
     }
     
     func saveVehicle() {
-        let vehicle = PFObject(className: "Vehicle")
-        vehicle["year"] = Int(yearTextField.text!)
-        vehicle["make"] = makeTextField.text
-        vehicle["model"] = modelTextField.text
-        vehicle["color"] = colorTextField.text
-        vehicle["vin"] = vinTextField.text
-        vehicle["user"] = PFUser.current()
+        if self.vehicle == nil {
+
+        self.vehicle = Vehicle()
+        }
+        vehicle.year = Int(yearTextField.text!)!
+        vehicle.make = makeTextField.text
+        vehicle.model = modelTextField.text
+        vehicle.color = colorTextField.text
+        vehicle.vin = vinTextField.text
+        vehicle.user = PFUser.current()
         
         vehicle.saveInBackground {
             (success: Bool, error: Error?) in

@@ -11,12 +11,19 @@ import Parse
 
 class Vehicle : PFObject, PFSubclassing {
     
-    @NSManaged var color: String
-    @NSManaged var model: String
-    @NSManaged var make: String
-    @NSManaged var vin: String
+    @NSManaged var color: String!
+    @NSManaged var model: String!
+    @NSManaged var make: String!
+    @NSManaged var vin: String!
     @NSManaged var year: Int
-    @NSManaged var user: PFUser
+    @NSManaged var user: PFUser!
+    
+//    var color: String!
+//    var model: String!
+//    var make: String!
+//    var vin: String!
+//    var year: Int?
+//    var user: PFUser!
     
     static func parseClassName() -> String {
         return "Vehicle"

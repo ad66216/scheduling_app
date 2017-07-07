@@ -23,7 +23,7 @@ class SettingsViewController: UIViewController {
     }
     @IBAction func logoutClick(_ sender: Any) {
         PFUser.logOutInBackground { (error: Error?) in
-            var theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+            let theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
             let loginViewController = theStoryBoard.instantiateViewController(withIdentifier: "UserLoginViewController")
             UIApplication.shared.keyWindow?.rootViewController = loginViewController
         }
