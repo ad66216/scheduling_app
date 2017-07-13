@@ -58,17 +58,17 @@ class AppointmentListViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
         
-//        let monthName = DateUtils.getMonthName(month: self.appointment.month)
-//        let time = DateUtils.convertMinutesToDateString(minutes: Double(self.appointment.time))
-        
         if (self.appointmentList.count > indexPath.row) {
+//            if let appointment = (self.appointmentList.object(at: indexPath.row) as? Appointment) {
             let appointment = (self.appointmentList.object(at: indexPath.row) as? Appointment)!
             
-            //            let text = "\(String(describing: vehicle?.year as Optional))" + " " + (vehicle?.make)! + " " + (vehicle?.model)!
-//            let text = "\(monthName) \(appointment.dateTime)"
-//            let text = "\(appointment.dayOfWeek) \(monthName) \(appointment.date), \(appointment.year) at \(time)"
-            let text = "\(appointment.dayOfWeek) [Month Name] \(appointment.date), \(appointment.year) at [time]"
-//            let text = appointment.dayOfWeek
+            let monthName = DateUtils.getMonthName(month: appointment.month)
+            let apptHour = appointment.time/60
+            let apptMin = DateUtils.getApptMinutes(minutes: appointment.time % 60)
+            let apptAmOrPm = DateUtils.getAmOrPm(minutes: appointment.time)
+            
+            let apptTime = "\(apptHour):\(apptMin)\(apptAmOrPm)"
+            let text = "\(appointment.dayOfWeek), \(monthName) \(appointment.date), \(appointment.year) at \(apptTime)"
             cell.textLabel!.text = text
         }
         return cell
@@ -84,14 +84,6 @@ class AppointmentListViewController: UIViewController, UITableViewDelegate, UITa
         //let appointment = (self.appointmentList.object(at: indexPath.row) as? Appointment)!
         //didSelectAppointment(appointment)
     }
-    
-//    func didSelectAppointment(_ appointment: Appointment) {
-//        
-//        // show vehicle details
-//        let theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-//        let vehicleViewController = theStoryBoard.instantiateViewController(withIdentifier: "vehicleViewController")
-//        self.navigationController?.pushViewController(appointmentViewController, animated: true)
-//    }
 }
 
 

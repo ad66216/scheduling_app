@@ -329,7 +329,7 @@
             </objects>
             <point key="canvasLocation" x="1726" y="448"/>
         </scene>
-        <!--Appointment List View Controller-->
+        <!--Appointments-->
         <scene sceneID="AwC-4E-Vsg">
             <objects>
                 <viewController id="hfE-Tm-4QT" customClass="AppointmentListViewController" customModule="Scheduling_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -349,7 +349,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Vq7-3R-p0g"/>
+                    <navigationItem key="navigationItem" title="Appointments" id="Vq7-3R-p0g"/>
                     <connections>
                         <outlet property="appointmentTableView" destination="7wG-ra-c43" id="fhG-Zu-tJ6"/>
                     </connections>

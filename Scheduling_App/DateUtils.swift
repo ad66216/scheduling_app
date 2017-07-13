@@ -51,6 +51,22 @@ class DateUtils
         }
         return date
     }
+    
+    static func getAmOrPm(minutes: Int) -> String {
+        if minutes < 720 {
+            return "am"
+        } else {
+            return "pm"
+        }
+    }
+    
+    static func getApptMinutes(minutes: Int) -> String {
+        if minutes == 0 {
+            return "00"
+        } else {
+            return String(minutes)
+        }
+    }
 }
 
 
