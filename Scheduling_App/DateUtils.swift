@@ -46,7 +46,8 @@ class DateUtils
         var date = ""
         if minutes < 720 {
             date = String(format:"%d:%02d", hours, mins) + "am"
-        } else {
+        }
+        else {
             date = String(format:"%d:%02d", hours, mins) + "pm"
         }
         return date

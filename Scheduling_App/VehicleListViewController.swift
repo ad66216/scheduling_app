@@ -8,29 +8,37 @@
 
 import UIKit
 import Parse
+import Material
 
-class VehicleListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+struct ButtonLayout {
+    struct Fab {
+        static let diameter: CGFloat = 48
+    }
+}
+
+class VehicleListViewController: UIViewController {
     
-    @IBOutlet weak var vehicleListTableView: UITableView!
+    @IBOutlet weak var vehicleListTableView: VehicleTableView!
     
     var vehicle: Vehicle!
     var vehicleList: NSMutableArray!
+    
     //var appointment: Appointment!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
-        //        let displayWidth: CGFloat = self.view.frame.width
-        //        let displayHeight: CGFloat = self.view.frame.height
-        
         vehicleList = NSMutableArray()
         
-        //        vehicleListTableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
-        vehicleListTableView.register(UITableViewCell.self, forCellReuseIdentifier: "MyCell")
-        vehicleListTableView.dataSource = self
-        vehicleListTableView.delegate = self
+        vehicleListTableView.rowHeight = UITableViewAutomaticDimension
+        vehicleListTableView.estimatedRowHeight = 300
+        
         self.view.addSubview(vehicleListTableView)
+        
+        // Material Design
+        prepareFABButton()
+        
+        view.backgroundColor = Color.grey.lighten5
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,7 +55,9 @@ class VehicleListViewController: UIViewController, UITableViewDelegate, UITableV
                     let vehicle = obj as! Vehicle
                     self.vehicleList.add(vehicle)
                 }
-                self.vehicleListTableView.reloadData();
+                
+                self.vehicleListTableView.data = self.vehicleList as! [Vehicle]
+//                self.vehicleListTableView.reloadData();
             }
         }
     }
@@ -57,43 +67,75 @@ class VehicleListViewController: UIViewController, UITableViewDelegate, UITableV
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.vehicleList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
-        
-        if (self.vehicleList.count > indexPath.row) {
-            let vehicle = (self.vehicleList.object(at: indexPath.row) as? Vehicle)!
-            
-            //            let text = "\(String(describing: vehicle?.year as Optional))" + " " + (vehicle?.make)! + " " + (vehicle?.model)!
-            let text = String(vehicle.year) + " " + vehicle.make! + " " + vehicle.model! + " - " + vehicle.color!
-            cell.textLabel!.text = text
-        }
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let row = indexPath.row
-        print("Row: \(row)")
-        
-        let vehicle = (self.vehicleList.object(at: indexPath.row) as? Vehicle)!
-        didSelectVehicle(vehicle)
-    }
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return self.vehicleList.count
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "vehicleCell", for: indexPath) as! VehicleTableViewCell
+//                
+//        if (self.vehicleList.count > indexPath.row) {
+//            let vehicle = (self.vehicleList.object(at: indexPath.row) as? Vehicle)!
+//            
+////            let text = "\(String(describing: vehicle?.year as Optional))" + " " + (vehicle?.make)! + " " + (vehicle?.model)!
+//            let text = String(vehicle.year) + " " + vehicle.make! + " " + vehicle.model! + " - " + vehicle.color!
+//            cell.vehicleNameView.text = text
+//            
+//            vehicle.image?.getDataInBackground(block: { (imageData: Data?, error: Error?) -> Void in
+//                if error == nil {
+//                    if let imageData = imageData {
+//                        let image = UIImage(data:imageData)?.resize(toWidth: cell.width)
+//                        cell.vehicleImageView.contentMode = .scaleAspectFit
+//                        cell.vehicleImageView.image = image
+//                    }
+//                }
+//            })
+//
+//        }
+//        return cell
+//    }
+//    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        
+//        let row = indexPath.row
+//        print("Row: \(row)")
+//        
+//        let vehicle = (self.vehicleList.object(at: indexPath.row) as? Vehicle)!
+//        didSelectVehicle(vehicle)
+//    }
     
     func didSelectVehicle(_ vehicle: Vehicle) {
         
         // show vehicle details
         let theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-        let vehicleViewController = theStoryBoard.instantiateViewController(withIdentifier: "vehicleViewController")
+        let vehicleViewController = (theStoryBoard.instantiateViewController(withIdentifier: "vehicleViewController") as? VehicleViewController)!
+        vehicleViewController.vehicle = vehicle
         self.navigationController?.pushViewController(vehicleViewController, animated: true)
     }
 }
 
+extension VehicleListViewController {
+    fileprivate func prepareFABButton() {
+        let button = FABButton(image: Icon.cm.add, tintColor: .white)
+        button.pulseColor = .white
+        button.backgroundColor = Color.red.base
+        
+        view.layout(button)
+            .width(ButtonLayout.Fab.diameter)
+            .height(ButtonLayout.Fab.diameter)
+            .bottomRight(bottom: 80, right: 35)
+        
+//        (self, action: #selector(getter: UIDynamicBehavior.action), for: UIControlEvents.touchUpInside)
+        button.addTarget(self, action: #selector(VehicleListViewController.action(sender:)), for: UIControlEvents.touchUpInside)
+    }
+    func action(sender:UIButton!) {
+        let theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let vehicleViewController = theStoryBoard.instantiateViewController(withIdentifier: "vehicleViewController")
+        self.navigationController?.pushViewController(vehicleViewController, animated: true)
+    }
+}
 
 
 

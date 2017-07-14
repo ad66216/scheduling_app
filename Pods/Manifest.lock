@@ -1,18 +1,29 @@
 PODS:
   - Bolts/Tasks (1.8.4)
   - CVCalendar (1.5.0)
+  - Material (2.6.3):
+    - Material/Core (= 2.6.3)
+  - Material/Capture (2.6.3):
+    - Material/Core
+  - Material/Core (2.6.3)
+  - Material/Photos (2.6.3):
+    - Material/Core
   - Parse (1.14.2):
     - Bolts/Tasks (~> 1.8)
 
 DEPENDENCIES:
   - CVCalendar (~> 1.5.0)
+  - Material (~> 2.0)
+  - Material/Capture (~> 2.0)
+  - Material/Photos (~> 2.0)
   - Parse
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   CVCalendar: 5d51a7bda1b9439b612de69d86a91a73befa1936
+  Material: af607a7ec0e9978ef85cf189a3d8ceeeb650400f
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
 
-PODFILE CHECKSUM: 99f89a20b72f579f709de23120a601ba018e902a
+PODFILE CHECKSUM: cf241fe0fc14d5998181de68fde091c0d65ba9e7
 
 COCOAPODS: 1.2.1

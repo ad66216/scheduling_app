@@ -73,6 +73,9 @@ class ScheduleViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     }
     
     func didSelectDayView(_ dayView: CVCalendarDayView, animationDidFinish: Bool) {
+//        if let apptDate = appointment.date {
+//            apptDate = dayView.date.day
+//        }
         appointment.date = dayView.date.day
         appointment.month = dayView.date.month
         appointment.year = dayView.date.year

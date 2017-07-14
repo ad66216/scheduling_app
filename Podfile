@@ -9,5 +9,8 @@ target 'Scheduling_App' do
 
   pod 'Parse'
   pod 'CVCalendar', '~> 1.5.0'
+  pod 'Material', '~> 2.0'
+  pod 'Material/Capture', '~> 2.0'
+  pod 'Material/Photos', '~> 2.0'
 
 end

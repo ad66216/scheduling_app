@@ -27,6 +27,9 @@
 		7A1465021F0FDD36000DA19E /* SelectVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1465011F0FDD36000DA19E /* SelectVehicleViewController.swift */; };
 		7A1465041F101497000DA19E /* AppointmentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1465031F101497000DA19E /* AppointmentListViewController.swift */; };
 		7A1465081F101A4C000DA19E /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1465071F101A4C000DA19E /* DateUtils.swift */; };
+		7AD791A81F19000600AE49EE /* VehicleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD791A71F19000600AE49EE /* VehicleTableViewCell.swift */; };
+		7AD791AE1F19219600AE49EE /* VehicleTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD791AD1F19219600AE49EE /* VehicleTableView.swift */; };
+		7AD791B01F19569A00AE49EE /* AppointmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD791AF1F19569A00AE49EE /* AppointmentTableViewCell.swift */; };
 		D4BA3845E396A33516FEA358 /* Pods_Scheduling_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 748F7A4E893023458ECE5CD2 /* Pods_Scheduling_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +60,9 @@
 		7A1465011F0FDD36000DA19E /* SelectVehicleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectVehicleViewController.swift; sourceTree = "<group>"; };
 		7A1465031F101497000DA19E /* AppointmentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentListViewController.swift; sourceTree = "<group>"; };
 		7A1465071F101A4C000DA19E /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		7AD791A71F19000600AE49EE /* VehicleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleTableViewCell.swift; sourceTree = "<group>"; };
+		7AD791AD1F19219600AE49EE /* VehicleTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleTableView.swift; sourceTree = "<group>"; };
+		7AD791AF1F19569A00AE49EE /* AppointmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +117,11 @@
 				089A4B381EFD46E200C6B713 /* TimesViewController.swift */,
 				08F4B7CC1EFC4E7C00D1DEBB /* VehicleViewController.swift */,
 				08C8925D1F06BE19009821B7 /* VehicleListViewController.swift */,
+				7AD791A71F19000600AE49EE /* VehicleTableViewCell.swift */,
+				7AD791AD1F19219600AE49EE /* VehicleTableView.swift */,
 				7A1465011F0FDD36000DA19E /* SelectVehicleViewController.swift */,
 				7A1465031F101497000DA19E /* AppointmentListViewController.swift */,
+				7AD791AF1F19569A00AE49EE /* AppointmentTableViewCell.swift */,
 				083EF96B1EFC1CD600C187B4 /* CreateAccountViewController.swift */,
 				083EF9691EFC0F3B00C187B4 /* UserLoginViewController.swift */,
 				083EF96F1EFC448600C187B4 /* SettingsViewController.swift */,
@@ -266,13 +275,16 @@
 				08C892601F06C79A009821B7 /* Vehicle.swift in Sources */,
 				7A1465021F0FDD36000DA19E /* SelectVehicleViewController.swift in Sources */,
 				08003AA11ECE27EE000EF295 /* ServicesOfferedViewController.swift in Sources */,
+				7AD791B01F19569A00AE49EE /* AppointmentTableViewCell.swift in Sources */,
 				083EF9701EFC448600C187B4 /* SettingsViewController.swift in Sources */,
 				7A1465041F101497000DA19E /* AppointmentListViewController.swift in Sources */,
 				089A4B311EFD35F700C6B713 /* ScheduleViewController.swift in Sources */,
 				08003A8B1ECE1CB7000EF295 /* AppDelegate.swift in Sources */,
 				089A4B3B1EFD8D7800C6B713 /* Time.swift in Sources */,
+				7AD791A81F19000600AE49EE /* VehicleTableViewCell.swift in Sources */,
 				083EF96A1EFC0F3B00C187B4 /* UserLoginViewController.swift in Sources */,
 				7A1465081F101A4C000DA19E /* DateUtils.swift in Sources */,
+				7AD791AE1F19219600AE49EE /* VehicleTableView.swift in Sources */,
 				08C8925E1F06BE19009821B7 /* VehicleListViewController.swift in Sources */,
 				08F4B7CD1EFC4E7C00D1DEBB /* VehicleViewController.swift in Sources */,
 				08C892581F054DCE009821B7 /* Appointment.swift in Sources */,

@@ -56,19 +56,28 @@ class AppointmentListViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "appointmentCell", for: indexPath as IndexPath) //as? AppointmentTableViewCell
         
         if (self.appointmentList.count > indexPath.row) {
 //            if let appointment = (self.appointmentList.object(at: indexPath.row) as? Appointment) {
             let appointment = (self.appointmentList.object(at: indexPath.row) as? Appointment)!
             
             let monthName = DateUtils.getMonthName(month: appointment.month)
-            let apptHour = appointment.time/60
+//            let apptHour = appointment.time/60
+            var apptHour: Int = 0
+            
+            if appointment.time < 60 {
+                apptHour = 12
+            } else {
+                apptHour = appointment.time/60
+            }
             let apptMin = DateUtils.getApptMinutes(minutes: appointment.time % 60)
             let apptAmOrPm = DateUtils.getAmOrPm(minutes: appointment.time)
             
             let apptTime = "\(apptHour):\(apptMin)\(apptAmOrPm)"
             let text = "\(appointment.dayOfWeek), \(monthName) \(appointment.date), \(appointment.year) at \(apptTime)"
+            
+            cell.textLabel!.lineBreakMode = NSLineBreakMode.byWordWrapping;
             cell.textLabel!.text = text
         }
         return cell
@@ -84,6 +93,14 @@ class AppointmentListViewController: UIViewController, UITableViewDelegate, UITa
         //let appointment = (self.appointmentList.object(at: indexPath.row) as? Appointment)!
         //didSelectAppointment(appointment)
     }
+    @IBAction func newApptDidSelect(_ sender: Any) {
+        
+        let theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let vehicleViewController = theStoryBoard.instantiateViewController(withIdentifier: "servicesOfferedViewController")
+        self.navigationController?.pushViewController(vehicleViewController, animated: true)
+    }
+    
+    
 }
 
 

@@ -41,5 +41,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to the photo library for adding vehicle images.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to the camera for adding vehicle images.</string>
 </dict>
 </plist>
