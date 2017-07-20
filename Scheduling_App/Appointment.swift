@@ -20,6 +20,7 @@ class Appointment : PFObject, PFSubclassing {
     @NSManaged var appointmentType: String
     @NSManaged var user: PFUser
     @NSManaged var dateTime: Date
+    @NSManaged var vehicle: Vehicle
     
     static func parseClassName() -> String {
         return "Appointment"

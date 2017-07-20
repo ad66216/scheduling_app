@@ -30,6 +30,7 @@ class AppointmentListViewController: UIViewController, UITableViewDelegate, UITa
     override func viewDidAppear(_ animated: Bool) {
         let query = PFQuery(className: "Appointment")
         query.whereKey("user", equalTo: PFUser.current()!)
+        query.includeKey("vehicle")
         query.findObjectsInBackground { (results: [PFObject]?, error: Error?) -> Void in
             if error != nil {
                 print("The getFirstObject request failed.")
@@ -56,31 +57,20 @@ class AppointmentListViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "appointmentCell", for: indexPath as IndexPath) //as? AppointmentTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "appointmentCell", for: indexPath as IndexPath) as? AppointmentTableViewCell
         
         if (self.appointmentList.count > indexPath.row) {
 //            if let appointment = (self.appointmentList.object(at: indexPath.row) as? Appointment) {
             let appointment = (self.appointmentList.object(at: indexPath.row) as? Appointment)!
-            
-            let monthName = DateUtils.getMonthName(month: appointment.month)
-//            let apptHour = appointment.time/60
-            var apptHour: Int = 0
-            
-            if appointment.time < 60 {
-                apptHour = 12
-            } else {
-                apptHour = appointment.time/60
-            }
-            let apptMin = DateUtils.getApptMinutes(minutes: appointment.time % 60)
-            let apptAmOrPm = DateUtils.getAmOrPm(minutes: appointment.time)
-            
-            let apptTime = "\(apptHour):\(apptMin)\(apptAmOrPm)"
-            let text = "\(appointment.dayOfWeek), \(monthName) \(appointment.date), \(appointment.year) at \(apptTime)"
-            
-            cell.textLabel!.lineBreakMode = NSLineBreakMode.byWordWrapping;
-            cell.textLabel!.text = text
+
+            cell?.appointment = appointment
         }
-        return cell
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 100.0;//Choose your custom row height
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
