@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import Material
 
 class AppointmentListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -25,12 +26,15 @@ class AppointmentListViewController: UIViewController, UITableViewDelegate, UITa
         appointmentTableView.dataSource = self
         appointmentTableView.delegate = self
         self.view.addSubview(appointmentTableView)
+        prepareFABButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         let query = PFQuery(className: "Appointment")
         query.whereKey("user", equalTo: PFUser.current()!)
         query.includeKey("vehicle")
+        query.includeKey("appointmentStatus")
+        query.addDescendingOrder("dateTime")
         query.findObjectsInBackground { (results: [PFObject]?, error: Error?) -> Void in
             if error != nil {
                 print("The getFirstObject request failed.")
@@ -52,6 +56,10 @@ class AppointmentListViewController: UIViewController, UITableViewDelegate, UITa
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+        
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.appointmentList.count
     }
@@ -70,7 +78,7 @@ class AppointmentListViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 100.0;//Choose your custom row height
+        return 125.0;//Choose your custom row height
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -83,15 +91,37 @@ class AppointmentListViewController: UIViewController, UITableViewDelegate, UITa
         //let appointment = (self.appointmentList.object(at: indexPath.row) as? Appointment)!
         //didSelectAppointment(appointment)
     }
-    @IBAction func newApptDidSelect(_ sender: Any) {
+//    @IBAction func newApptDidSelect(_ sender: Any) {
+//        
+//        let theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+//        let vehicleViewController = theStoryBoard.instantiateViewController(withIdentifier: "servicesOfferedViewController")
+//        self.navigationController?.pushViewController(vehicleViewController, animated: true)
+//    }
+    
+    
+}
+
+extension AppointmentListViewController {
+    fileprivate func prepareFABButton() {
+        let button = FABButton(image: Icon.cm.add, tintColor: .white)
+        button.pulseColor = .white
+        button.backgroundColor = Color.red.base
         
+        view.layout(button)
+            .width(ButtonLayout.Fab.diameter)
+            .height(ButtonLayout.Fab.diameter)
+            .bottomRight(bottom: 80, right: 35)
+        
+        //        (self, action: #selector(getter: UIDynamicBehavior.action), for: UIControlEvents.touchUpInside)
+        button.addTarget(self, action: #selector(AppointmentListViewController.action(sender:)), for: UIControlEvents.touchUpInside)
+    }
+    func action(sender:UIButton!) {
         let theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         let vehicleViewController = theStoryBoard.instantiateViewController(withIdentifier: "servicesOfferedViewController")
         self.navigationController?.pushViewController(vehicleViewController, animated: true)
     }
-    
-    
 }
+
 
 
 

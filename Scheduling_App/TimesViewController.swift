@@ -88,8 +88,8 @@ class TimesViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let dateTime = self.appointment.dateTime.addingTimeInterval(timeSlot! * 60)
         self.appointment.dateTime = dateTime
         
-        let selectVehicleViewController = SelectVehicleViewController()
-        selectVehicleViewController.appointment = self.appointment
+//        let selectVehicleViewController = SelectVehicleViewController()
+//        selectVehicleViewController.appointment = self.appointment
         
         let theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
         let selectVehicleListViewController = theStoryBoard.instantiateViewController(withIdentifier: "selectVehicleListViewController") as! SelectVehicleViewController

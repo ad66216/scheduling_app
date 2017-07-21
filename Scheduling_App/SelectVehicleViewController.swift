@@ -27,14 +27,13 @@ class SelectVehicleViewController: VehicleListViewController {
     override func didSelectVehicle(_ vehicle: Vehicle) {
         // show a dialog asking to confirm the appointment
         
-        let time = DateUtils.convertMinutesToDateString(minutes: Double(self.appointment.time))
-        
-        let monthName = DateUtils.getMonthName(month: self.appointment.month)
         if self.appointment == nil {
             
             print("appointment is nil")
             
         } else {
+            
+            self.appointment.vehicle = vehicle
             
             let refreshAlert = UIAlertController(title: "Are you sure?", message: "Are you sure you wish to create this appointment?", preferredStyle: UIAlertControllerStyle.alert)
             
@@ -48,6 +47,8 @@ class SelectVehicleViewController: VehicleListViewController {
                     if error != nil {
                         print("The getFirstObject request failed.")
                     } else {
+                        let time = Utils.convertMinutesToDateString(minutes: Double(self.appointment.time))
+                        let monthName = Utils.getMonthName(month: self.appointment.month)
                         let alert = UIAlertController(title: "Success", message: "Your appointment is scheduled for \(self.appointment.dayOfWeek) \(monthName) \(self.appointment.date), \(self.appointment.year) at \(time)", preferredStyle: .alert)
                         self.present(alert, animated: true, completion: nil)
                         // number of seconds in delay (in this case 5 seconds)
@@ -55,12 +56,11 @@ class SelectVehicleViewController: VehicleListViewController {
                         DispatchQueue.main.asyncAfter(deadline: when){
                             // code with delay
                             alert.dismiss(animated: true, completion: nil)
+                            self.performSegue(withIdentifier: "unwindSegueToAppt", sender: self)
                         }
                     }
                 })
-                
             }))
-            
             present(refreshAlert, animated: true, completion: nil)
         }
     }
