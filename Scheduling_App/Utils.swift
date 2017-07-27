@@ -87,6 +87,54 @@ class Utils
         }
     }
 
+    static func formatHourFromMinutes(minutes: Int) -> Int {
+        
+        var apptHour: Int = 0
+        
+        if minutes < 60 {
+            apptHour = 12
+        } else {
+            if minutes > 720 {
+                apptHour = (minutes/60) - 12
+            } else {
+                apptHour = minutes/60
+            }
+        }
+        return apptHour
+    }
+    
+    static func getVehicleInfo(vehicle: Vehicle) -> String {
+        
+        var vehicleText = ""
+
+        vehicleText += "\(vehicle.year)"
+        
+        if let vehicleMake = vehicle.make {
+            
+            if (vehicleText != "") {
+                vehicleText += " "
+            }
+            vehicleText += vehicleMake
+        }
+        if let vehicleModel = vehicle.model {
+            
+            if (vehicleText != "") {
+                vehicleText += " "
+            }
+            vehicleText += vehicleModel
+        }
+        if let vehicleColor = vehicle.color {
+            
+            if (vehicleText != "") {
+                vehicleText += " - "
+            }
+            vehicleText += vehicleColor
+        }
+        //            self.apptVehicle.text = "\(vehicleYear) \(vehicleMake) \(vehicleModel) - \(vehicleColor)"
+        return vehicleText
+        
+    }
+    
 }
 
 

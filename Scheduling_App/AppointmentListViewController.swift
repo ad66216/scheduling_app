@@ -88,8 +88,15 @@ class AppointmentListViewController: UIViewController, UITableViewDelegate, UITa
         let row = indexPath.row
         print("Row: \(row)")
         
-        //let appointment = (self.appointmentList.object(at: indexPath.row) as? Appointment)!
-        //didSelectAppointment(appointment)
+        let appointment = (self.appointmentList.object(at: indexPath.row) as? Appointment)!
+        
+//        let destinationVC = segue.destination as! AppointmentDetailViewController
+//        destinationVC.appointment = self.appointment
+        
+        let theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+        let appointmentViewController = theStoryBoard.instantiateViewController(withIdentifier: "appointmentDetailViewController") as? AppointmentDetailViewController
+        appointmentViewController?.appointment = appointment
+        self.navigationController?.pushViewController(appointmentViewController!, animated: true)
     }
 //    @IBAction func newApptDidSelect(_ sender: Any) {
 //        
@@ -97,6 +104,11 @@ class AppointmentListViewController: UIViewController, UITableViewDelegate, UITa
 //        let vehicleViewController = theStoryBoard.instantiateViewController(withIdentifier: "servicesOfferedViewController")
 //        self.navigationController?.pushViewController(vehicleViewController, animated: true)
 //    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! AppointmentDetailViewController
+        destinationVC.appointment = self.appointment
+    }
     
     
 }

@@ -77,7 +77,7 @@ class VehicleListViewController: UIViewController {
 //        if (self.vehicleList.count > indexPath.row) {
 //            let vehicle = (self.vehicleList.object(at: indexPath.row) as? Vehicle)!
 //            
-////            let text = "\(String(describing: vehicle?.year as Optional))" + " " + (vehicle?.make)! + " " + (vehicle?.model)!
+//            let text = "\(String(describing: vehicle?.year as Optional))" + " " + (vehicle?.make)! + " " + (vehicle?.model)!
 //            let text = String(vehicle.year) + " " + vehicle.make! + " " + vehicle.model! + " - " + vehicle.color!
 //            cell.vehicleNameView.text = text
 //            

@@ -37,17 +37,8 @@ class AppointmentTableViewCell : UITableViewCell {
         }
         
         let monthName = Utils.getMonthName(month: a.month)
-        var apptHour: Int = 0
+        let apptHour = Utils.formatHourFromMinutes(minutes: a.time)
         
-        if a.time < 60 {
-            apptHour = 12
-        } else {
-            if a.time > 720 {
-                apptHour = (a.time/60) - 12
-            } else {
-                apptHour = a.time/60
-            }
-        }
         let apptMin = Utils.getApptMinutes(minutes: a.time % 60)
         let apptAmOrPm = Utils.getAmOrPm(minutes: a.time)
         let apptTime = "\(apptHour):\(apptMin)\(apptAmOrPm)"
@@ -55,45 +46,12 @@ class AppointmentTableViewCell : UITableViewCell {
         
         self.serviceType.text = Utils.convertServiceType(type: a.serviceType)
         self.apptDateTime.text = dateTimeText
-//        self.apptDateTime.text = a.appointmentStatus
-//        self.apptDateTime.text = apptStatus.name
-
-//        let vehicleString: String = "\(String(describing: appointment?.vehicle.make)) \(String(describing: appointment?.vehicle.model))"
-//        self.apptVehicle.text = "\(appointment?.vehicle.make) \(appointment?.vehicle.model)"
-//        self.apptVehicle.text = appointment?.vehicle.make
         
         if appointment?.vehicle == nil {
             self.apptVehicle.text = ""
         } else {
             
-            var vehicleText = ""
-            
-            if let vehicleYear = appointment?.vehicle.year {
-                vehicleText += "\(vehicleYear)"
-            }
-            if let vehicleMake = appointment?.vehicle.make {
-                
-                if (vehicleText != "") {
-                    vehicleText += " "
-                }
-                vehicleText += vehicleMake
-            }
-            if let vehicleModel = appointment?.vehicle.model {
-                
-                if (vehicleText != "") {
-                    vehicleText += " "
-                }
-                vehicleText += vehicleModel
-            }
-            if let vehicleColor = appointment?.vehicle.color {
-                
-                if (vehicleText != "") {
-                    vehicleText += " - "
-                }
-                vehicleText += vehicleColor
-            }
-//            self.apptVehicle.text = "\(vehicleYear) \(vehicleMake) \(vehicleModel) - \(vehicleColor)"
-            self.apptVehicle.text = vehicleText
+            self.apptVehicle.text = Utils.getVehicleInfo(vehicle: (appointment?.vehicle)!)
         }
         
         if appointment?.appointmentStatus == nil {
