@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 class AppointmentTableViewCell : UITableViewCell {
     
@@ -20,15 +21,6 @@ class AppointmentTableViewCell : UITableViewCell {
             layoutSubviews()
         }
     }
-    
-//    open override var height: CGFloat {
-//        get {
-//            return appointmentViewCell.height
-//        }
-//        set(value) {
-//            super.height = value
-//        }
-//    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -50,15 +42,14 @@ class AppointmentTableViewCell : UITableViewCell {
         if appointment?.vehicle == nil {
             self.apptVehicle.text = ""
         } else {
-            
             self.apptVehicle.text = Utils.getVehicleInfo(vehicle: (appointment?.vehicle)!)
         }
         
-        if appointment?.appointmentStatus == nil {
+        if appointment?.tracking.appointmentStatus == nil {
             
             self.apptStatus.text = ""
         } else {
-            guard let status = appointment?.appointmentStatus.name else {
+            guard let status = appointment?.tracking.appointmentStatus.name else {
                 return
             }
             self.apptStatus.text = "Status: \(status)"

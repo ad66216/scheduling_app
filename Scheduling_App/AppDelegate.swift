@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         initParse()
-        
         return true
     }
     
@@ -34,7 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             configuration.applicationId = "southern-tire-service-app-id";
             configuration.server = "https://southern-tire-service.herokuapp.com/parse/";
         }))
-
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -16,6 +16,8 @@ class ScheduleViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     @IBOutlet weak var calendarView: CVCalendarView!
     
     var appointment: Appointment!
+    var isEditMode: Bool = false
+    var scheduleChanged : ((Appointment) -> Void)!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +107,8 @@ class ScheduleViewController: UIViewController, CVCalendarViewDelegate, CVCalend
         
         let destinationVC = segue.destination as! TimesViewController
         destinationVC.appointment = appointment
+        destinationVC.isEditMode = self.isEditMode
+        destinationVC.scheduleChanged = self.scheduleChanged
     }
     
 //    func shouldSelectRange() -> Bool {

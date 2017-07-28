@@ -33,7 +33,9 @@ class AppointmentListViewController: UIViewController, UITableViewDelegate, UITa
         let query = PFQuery(className: "Appointment")
         query.whereKey("user", equalTo: PFUser.current()!)
         query.includeKey("vehicle")
-        query.includeKey("appointmentStatus")
+//        query.includeKey("appointmentStatus")
+        query.includeKey("tracking.appointmentStatus")
+        query.includeKey("tracking.vehicleStatus")
         query.addDescendingOrder("dateTime")
         query.findObjectsInBackground { (results: [PFObject]?, error: Error?) -> Void in
             if error != nil {

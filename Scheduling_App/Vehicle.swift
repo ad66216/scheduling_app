@@ -19,6 +19,7 @@ class Vehicle : PFObject, PFSubclassing {
     @NSManaged var user: PFUser!
     @NSManaged var image: PFFile?
     
+    
     var uiImage: UIImage?
     
 //    var color: String!

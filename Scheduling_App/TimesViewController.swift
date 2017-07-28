@@ -15,6 +15,9 @@ class TimesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var unavailableTimeSlots: NSMutableArray!
     var schedule = Schedule()
     
+    var scheduleChanged : ((Appointment) -> Void)!
+    var isEditMode: Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,30 +79,39 @@ class TimesViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //        UIApplication.shared.keyWindow?.rootViewController = vehicleListViewController
-        //        self.present(vehicleListViewController, animated: true, completion: nil)
-        
-        
-        
-        let time = Int(self.schedule.timeSlots[indexPath.row] as! String)
-        self.appointment.time = time!
-        
-        let timeSlot = Double(self.schedule.timeSlots[indexPath.row] as! String)
-        let dateTime = self.appointment.dateTime.addingTimeInterval(timeSlot! * 60)
-        self.appointment.dateTime = dateTime
-        
-//        let selectVehicleViewController = SelectVehicleViewController()
-//        selectVehicleViewController.appointment = self.appointment
-        
-        let theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-        let selectVehicleListViewController = theStoryBoard.instantiateViewController(withIdentifier: "selectVehicleListViewController") as! SelectVehicleViewController
-        
-        selectVehicleListViewController.appointment = self.appointment
-        
-        self.navigationController?.pushViewController(selectVehicleListViewController, animated: true)
-        
-        print("Num: \(indexPath.row)")
-        //print("Value: \(timesArray[indexPath.row])")
+        if isEditMode == false {
+            
+            let time = Int(self.schedule.timeSlots[indexPath.row] as! String)
+            self.appointment.time = time!
+            
+            let timeSlot = Double(self.schedule.timeSlots[indexPath.row] as! String)
+            let dateTime = self.appointment.dateTime.addingTimeInterval(timeSlot! * 60)
+            self.appointment.dateTime = dateTime
+            
+            let theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+            let selectVehicleListViewController = theStoryBoard.instantiateViewController(withIdentifier: "selectVehicleListViewController") as! SelectVehicleViewController
+            selectVehicleListViewController.appointment = self.appointment
+            self.navigationController?.pushViewController(selectVehicleListViewController, animated: true)
+            
+            print("edit mode is false")
+            //print("Value: \(timesArray[indexPath.row])")
+        } else {
+            
+            let time = Int(self.schedule.timeSlots[indexPath.row] as! String)
+            self.appointment.time = time!
+            
+            let timeSlot = Double(self.schedule.timeSlots[indexPath.row] as! String)
+            let dateTime = self.appointment.dateTime.addingTimeInterval(timeSlot! * 60)
+            self.appointment.dateTime = dateTime
+            
+            let theStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+            let appointmentDetailViewController = (theStoryBoard.instantiateViewController(withIdentifier: "appointmentDetailViewController") as? AppointmentDetailViewController)!
+            appointmentDetailViewController.appointment = appointment
+            
+            self.scheduleChanged(self.appointment)
+            self.navigationController?.popViewController(animated: true)
+            print("edit mode is true")
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

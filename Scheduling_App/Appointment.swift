@@ -18,10 +18,10 @@ class Appointment : PFObject, PFSubclassing {
     @NSManaged var time: Int
     @NSManaged var serviceType: String
     @NSManaged var appointmentType: String
-    @NSManaged var appointmentStatus: AppointmentStatus
     @NSManaged var user: PFUser
     @NSManaged var dateTime: Date
     @NSManaged var vehicle: Vehicle
+    @NSManaged var tracking: Tracking
     
     static func parseClassName() -> String {
         return "Appointment"
