@@ -28,6 +28,19 @@ class Utils
         return newText
     }
     
+    static func convertApptType(type: String) -> String {
+        var newText: String
+        
+        if type == "dropOff" {
+            newText = "Drop Off"
+        } else if type == "waiting" {
+            newText = "Waiting In Store"
+        } else {
+            newText = ""
+        }
+        return newText
+    }
+    
     static func getApptDateTime(appointment: Appointment) -> String {
 //        var apptDateTime = ""
         

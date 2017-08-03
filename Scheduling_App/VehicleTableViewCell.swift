@@ -110,6 +110,7 @@ class VehicleTableViewCell : TableViewCell {
     func prepareImageView() {
         self.vehicleImageView = UIImageView()
         self.vehicleImageView.contentMode = .scaleAspectFill
+//            .scaleAspectFill
     }
     
     func prepareDateFormatter() {

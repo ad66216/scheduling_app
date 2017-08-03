@@ -15,6 +15,7 @@ class AppointmentTableViewCell : UITableViewCell {
     @IBOutlet weak var apptDateTime: UILabel!
     @IBOutlet weak var apptVehicle: UILabel!
     @IBOutlet weak var apptStatus: UILabel!
+    @IBOutlet weak var apptType: UILabel!
     
     public var appointment: Appointment? {
         didSet {
@@ -37,6 +38,7 @@ class AppointmentTableViewCell : UITableViewCell {
         let dateTimeText = "\(a.dayOfWeek), \(monthName) \(a.date), \(a.year) @ \(apptTime)"
         
         self.serviceType.text = Utils.convertServiceType(type: a.serviceType)
+        self.apptType.text = Utils.convertApptType(type: a.appointmentType)
         self.apptDateTime.text = dateTimeText
         
         if appointment?.vehicle == nil {

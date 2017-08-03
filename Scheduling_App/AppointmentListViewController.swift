@@ -80,7 +80,7 @@ class AppointmentListViewController: UIViewController, UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 125.0;//Choose your custom row height
+        return 150.0;//Choose your custom row height
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
