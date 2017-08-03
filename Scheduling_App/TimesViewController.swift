@@ -109,7 +109,8 @@ class TimesViewController: UIViewController, UITableViewDelegate, UITableViewDat
             appointmentDetailViewController.appointment = appointment
             
             self.scheduleChanged(self.appointment)
-            self.navigationController?.popViewController(animated: true)
+//            self.navigationController?.popViewController(animated: true)
+            performSegue(withIdentifier: "unwindSegueToApptDetail", sender: self)
             print("edit mode is true")
         }
     }

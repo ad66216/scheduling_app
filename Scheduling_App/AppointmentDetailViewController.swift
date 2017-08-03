@@ -100,8 +100,13 @@ class AppointmentDetailViewController: UIViewController {
             self.appointment.saveInBackground()
             self.apptDateLabel.text = Utils.getApptDateTime(appointment: appointment)
             self.apptTypeLabel.text = Utils.convertServiceType(type: self.appointment.serviceType)
+            
         }
+//        self.performSegue(withIdentifier: "unwindSegueToAppt", sender: self)
     }
+    
+    @IBAction func unwindFromTimesVC(segue: UIStoryboardSegue) { }
+    
 }
 
 

@@ -204,6 +204,7 @@
 				TargetAttributes = {
 					08003A861ECE1CB7000EF295 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = WT6SN856XK;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -442,6 +443,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = WT6SN856XK;
 				INFOPLIST_FILE = Scheduling_App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "bemore.Scheduling-App";
@@ -458,6 +460,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = WT6SN856XK;
 				INFOPLIST_FILE = Scheduling_App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "bemore.Scheduling-App";
