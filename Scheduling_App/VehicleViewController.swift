@@ -50,6 +50,9 @@ class VehicleViewController: UIViewController, UIImagePickerControllerDelegate {
         }
         
         imagePicker.delegate = self
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UserLoginViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -110,10 +113,38 @@ class VehicleViewController: UIViewController, UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            let image = self.resizeImage(image: pickedImage, targetSize: CGSize(width: 800.0, height: 800.0))
             vehicleImageView.contentMode = .scaleAspectFit
-            vehicleImageView.image = pickedImage
+            vehicleImageView.image = image
         }
         dismiss(animated: true, completion: nil)
+    }
+    
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / image.size.width
+        let heightRatio = targetSize.height / image.size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
     }
     
     func saveVehicle() {
@@ -134,8 +165,8 @@ class VehicleViewController: UIViewController, UIImagePickerControllerDelegate {
         vehicle.vin = vinTextField.text
         vehicle.user = PFUser.current()
         
-        let imageData = UIImagePNGRepresentation(vehicleImageView.image!)
-        let imageFile = PFFile(name:"image.png", data:imageData!)
+        let imageData = UIImageJPEGRepresentation(vehicleImageView.image!, 1)
+        let imageFile = PFFile(name:"image.jpg", data:imageData!)
 
         vehicle.image = imageFile
         
@@ -149,6 +180,37 @@ class VehicleViewController: UIViewController, UIImagePickerControllerDelegate {
                 NSLog("Didn't Save!")
             }
         }
+        
+    }
+    
+    @IBAction func deleteVehicleDidTap(_ sender: Any) {
+     
+        let refreshAlert = UIAlertController(
+            title: "Are you sure?",
+            message: "Are you sure you want to delete this Vehicle?",
+            preferredStyle: UIAlertControllerStyle.alert)
+        
+        refreshAlert.addAction(UIAlertAction(
+            title: "Cancel",
+            style: .cancel,
+            handler: { (action: UIAlertAction!) in
+                print("Handle Cancel Logic here")
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(
+            title: "Delete",
+            style: .destructive,
+            handler: { (action: UIAlertAction!) in
+                self.vehicle.deleteInBackground(block: { (succeeded: Bool?, error: Error?) in
+                    self.navigationController?.popViewController(animated: true)
+                })
+        }))
+        present(refreshAlert, animated: true, completion: nil)
+    }
+    
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 }
 
